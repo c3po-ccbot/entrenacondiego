@@ -43,13 +43,32 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Formulario enviado",
-      description: "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const json = await res.json();
+      if (json.ok) {
+        toast({
+          title: "Formulario enviado",
+          description:
+            "Gracias por tu mensaje. Nos pondremos en contacto contigo pronto.",
+        });
+        form.reset();
+      } else {
+        throw new Error(json.error || "Error desconocido");
+      }
+    } catch (err) {
+      toast({
+        title: "Error",
+        description:
+          "No se pudo enviar el mensaje. Por favor intenta más tarde.",
+      });
+      console.error(err);
+    }
   }
 
   return (
@@ -84,18 +103,18 @@ export function ContactForm() {
           />
         </div>
         <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Teléfono (Opcional)</FormLabel>
-                <FormControl>
-                  <Input placeholder="Tu número de teléfono" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Teléfono (Opcional)</FormLabel>
+              <FormControl>
+                <Input placeholder="Tu número de teléfono" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="message"
@@ -113,7 +132,9 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" size="lg">Enviar Mensaje</Button>
+        <Button type="submit" size="lg">
+          Enviar Mensaje
+        </Button>
       </form>
     </Form>
   );
