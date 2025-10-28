@@ -45,7 +45,7 @@ export const BenefitsSection = () => {
         </div>
         <div className="mt-8 text-center mt-4 text-lg md:text-xl max-w-3xl mx-auto">
           <h3>
-            No se trata sólo de entrenar más — se trata de entrenar mejor, con coherencia, con resultados reales.
+            No se trata sólo de entrenar más — se trata de entrenar mejor, con coherencia, con resultados fiables.
           </h3>
         </div>
       </div>
