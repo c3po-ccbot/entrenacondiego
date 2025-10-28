@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const AboutSection = () => {
   return (
@@ -24,31 +25,46 @@ const AboutSection = () => {
           </div>
           <div className="md:col-span-3">
             <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6">
-              Diego Jiménez: 20 años convirtiendo la pasión en
-              hábitos y Resultados
+              Diego Jiménez: 20 años convirtiendo la pasión en hábitos y
+              Resultados
             </h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Mi nombre es Diego Jiménez.
-                Aunque mi carrera profesional comenzó en la Ingeniería Agrónoma
-                (donde desarrollé mi rigor y visión estratégica por más de 15
-                años), mi verdadera escuela ha estado en la montaña, en la pista
-                y bajo las pesas.
+                Mi nombre es Diego Jiménez. Aunque mi carrera profesional
+                comenzó en la Ingeniería Agrónoma (donde desarrollé mi rigor y
+                visión estratégica por más de 15 años), mi verdadera escuela ha
+                estado en la montaña, en la pista y bajo las pesas.
               </p>
               <p>
-                Por más de 20 años, he vivido y respirado el deporte. Subir
-                montañas, correr maratones y el entrenamiento de fuerza no solo
-                me dieron resistencia física, sino que me enseñaron a forjar
-                hábitos inquebrantables.
+                Desde que tengo recuerdos, he vivido y respirado el deporte.
+                Subir montañas, correr maratones y el entrenamiento de fuerza no
+                solo me dieron fuerza y resistencia física, sino que me
+                enseñaron a forjar hábitos inquebrantables que me ayudaron a
+                llegar todo lo lejos que proponía.
               </p>
               <p>
-                Como Entrenador Personal Certificado y Asesor de Hábitos
-                Saludables, mi misión es simple: aplicar la metodología probada
-                y el enfoque estructurado que he adquirido (como ingeniero y
-                como atleta) para que tú también alcances tu máximo potencial
-                físico. No ofrezco trucos rápidos, ofrezco un cambio sostenible
-                y con resultados medibles.
+                Actualmente, estoy casado, soy padre de dos hijos y sigo
+                cuidando mi salud y fuerza, al mismo tiempo que les cuido a
+                ellos, por ello quiero compartir contigo todo lo que me ha
+                funcionado, para que tú también disfrutes de una vida activa,
+                plena y llena de energía. Como Entrenador Personal Certificado,
+                Dietista y Asesor de Hábitos Saludables, mi misión es simple:
+                aplicar la metodología probada y el enfoque estructurado que he
+                adquirido (como ingeniero y como atleta) para que tú también
+                alcances tu máximo potencial físico. No ofrezco trucos rápidos,
+                ofrezco un cambio sostenible y con resultados medibles.
               </p>
+            </div>
+            <div className="mt-8">
+              <Button
+                size="lg"
+                asChild
+                className="bg-accent hover:bg-accent/80 text-accent-foreground"
+              >
+                <a href="#contact">
+                  ¿Listo para empezar? Descubre cómo podemos trabajar juntos
+                </a>
+              </Button>
             </div>
           </div>
         </div>
