@@ -2,19 +2,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { z } from "zod";
+import { mailTemplate } from "./mailTemplate";
 
 const schema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().optional(),
-  message: z.string().min(10),
+  message: z.string().min(10).max(1500),
 });
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const data = schema.parse(body);
-    console.log("Datos del formulario recibidos:", data);
+    // console.log("Datos del formulario recibidos:", data);
     // podrías incluir control de frecuencia aquí (ver abajo)
 
     // Configurar el transporte
@@ -29,16 +30,10 @@ export async function POST(request: NextRequest) {
     });
 
     await transporter.sendMail({
-      from: `"Formulario Contacto" <${process.env.SMTP_USER}>`,
-      to: "diemate@gmail.com",
-      subject: `Nuevo mensaje de contacto de ${data.name}`,
-      text: `
-Nombre: ${data.name}
-Email: ${data.email}
-Teléfono: ${data.phone || "(no proporcionado)"}
-Mensaje:
-${data.message}
-`,
+      from: `Entrenacondiego <${process.env.SMTP_USER}>`,
+      to: "entrenacondiegojimenez@gmail.com",
+      subject: `${data.name} te ha contactado desde la web`,
+      html: mailTemplate(data),
       replyTo: data.email,
     });
 

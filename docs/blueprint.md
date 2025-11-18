@@ -1,4 +1,4 @@
-# **App Name**: Salud Inquebrantable
+# **App Name**: Entrena con Diego
 
 ## Core Features:
 

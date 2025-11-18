@@ -27,6 +27,8 @@ const formSchema = z.object({
   phone: z.string().optional(),
   message: z.string().min(10, {
     message: "El mensaje debe tener al menos 10 caracteres.",
+  }).max(1500, {
+    message: "El mensaje no puede exceder los 1500 caracteres.",
   }),
 });
 
