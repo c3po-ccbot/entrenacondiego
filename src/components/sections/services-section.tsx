@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { BrainCircuit, Dumbbell } from 'lucide-react';
@@ -45,7 +46,9 @@ const ServicesSection = () => {
           ))}
         </div>
         <div className="text-center mt-12">
-          <Button size="lg" variant="outline">Ver Planes y Tarifas</Button>
+          <Button size="lg" variant="outline" asChild>
+            <Link href="/planes">Ver Planes y Tarifas</Link>
+          </Button>
         </div>
       </div>
     </section>
