@@ -1,90 +1,159 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap');
+/* --------------------------------------------------------------------------
+   ENTRENA CON DIEGO — Design Token System
+   All visual decisions flow from these variables.
+   Do not hardcode colors, shadows, radii, or motion values in components.
+   -------------------------------------------------------------------------- */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: 120 60% 97%;
-    --foreground: 120 20% 10%;
-    --card: 120 60% 97%;
-    --card-foreground: 120 20% 10%;
-    --popover: 120 60% 97%;
-    --popover-foreground: 120 20% 10%;
-    --primary: 120 61% 34%;
-    --primary-foreground: 120 60% 98%;
-    --secondary: 120 20% 90%;
-    --secondary-foreground: 120 61% 34%;
-    --muted: 120 20% 90%;
-    --muted-foreground: 120 10% 45%;
-    --accent: 180 100% 27%;
-    --accent-foreground: 180 60% 98%;
-    --destructive: 0 84.2% 60.2%;
+    /* ── SURFACES ─────────────────────────────────────────────────────────── */
+    --background:          108 20% 97%;    /* #F5F9F5  barely-tinted off-white  */
+    --foreground:          144 40% 8%;     /* #0C1B10  near-black, deep forest  */
+    --card:                0   0% 100%;    /* #FFFFFF                           */
+    --card-foreground:     144 40% 8%;
+    --popover:             0   0% 100%;
+    --popover-foreground:  144 40% 8%;
+
+    /* ── BRAND ────────────────────────────────────────────────────────────── */
+    --primary:             140 60% 21%;    /* #155929  deep confident forest    */
+    --primary-foreground:  0   0% 100%;
+    --secondary:           128 22% 94%;    /* #EBF3EC  soft green surface       */
+    --secondary-foreground: 140 60% 21%;
+
+    /* ── NEUTRALS ─────────────────────────────────────────────────────────── */
+    --muted:               120 12% 93%;    /* #ECF1EC  neutral section bg       */
+    --muted-foreground:    130  8% 42%;    /* #646F66  readable muted text      */
+
+    /* ── CTA ACCENT (warm amber — reserved for primary CTAs) ─────────────── */
+    --accent:              31  84% 46%;    /* #D97A13  warm amber/gold          */
+    --accent-foreground:   0   0% 100%;
+
+    /* ── SYSTEM ───────────────────────────────────────────────────────────── */
+    --destructive:         0  84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 120 20% 88%;
-    --input: 120 20% 88%;
-    --ring: 120 61% 34%;
-    --radius: 0.5rem;
-    --chart-1: 120 70% 50%;
+    --border:              128 16% 87%;    /* #D2E3D5                           */
+    --input:               128 16% 87%;
+    --ring:                140 60% 21%;
+    --radius:              0.75rem;        /* 12px — base radius for shadcn/ui  */
+
+    /* ── DARK SURFACES (hero, contact section, footer) ───────────────────── */
+    --surface-inverse:          150 40%  7%;  /* #0B1A0E  darkest canvas          */
+    --surface-inverse-elevated: 150 32% 11%;  /* #111E15  lifted dark card        */
+
+    /* ── LAYERED SHADOWS (color-tinted, not flat gray) ───────────────────── */
+    --shadow-color: 144deg 40% 8%;
+    --shadow-sm:  0 1px 2px  hsl(144 40% 8% / 0.05),
+                  0 1px 3px  hsl(144 40% 8% / 0.04);
+    --shadow-md:  0 4px 10px hsl(144 40% 8% / 0.07),
+                  0 2px 4px  hsl(144 40% 8% / 0.05);
+    --shadow-lg:  0 10px 28px hsl(144 40% 8% / 0.09),
+                  0 4px 8px  hsl(144 40% 8% / 0.05);
+    --shadow-xl:  0 20px 50px hsl(144 40% 8% / 0.11),
+                  0 8px 16px hsl(144 40% 8% / 0.06);
+
+    /* ── MOTION ───────────────────────────────────────────────────────────── */
+    --duration-fast:  150ms;
+    --duration-base:  250ms;
+    --duration-slow:  400ms;
+    --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-premium:   cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* ── EXTENDED BORDER RADII ────────────────────────────────────────────── */
+    --radius-sm:   0.25rem;   /*  4px */
+    --radius-md:   0.5rem;    /*  8px */
+    --radius-lg:   0.75rem;   /* 12px */
+    --radius-xl:   1.25rem;   /* 20px */
+    --radius-2xl:  1.75rem;   /* 28px */
+    --radius-full: 9999px;
+
+    /* ── CHART (unchanged) ────────────────────────────────────────────────── */
+    --chart-1: 140 70% 50%;
     --chart-2: 180 60% 45%;
-    --chart-3: 30 80% 55%;
+    --chart-3:  30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 120 60% 97%;
-    --sidebar-foreground: 120 20% 10%;
-    --sidebar-primary: 120 61% 34%;
-    --sidebar-primary-foreground: 120 60% 98%;
-    --sidebar-accent: 120 20% 90%;
-    --sidebar-accent-foreground: 120 61% 34%;
-    --sidebar-border: 120 20% 88%;
-    --sidebar-ring: 120 61% 34%;
+
+    /* ── SIDEBAR (unchanged) ──────────────────────────────────────────────── */
+    --sidebar-background:          108 20% 97%;
+    --sidebar-foreground:          144 40%  8%;
+    --sidebar-primary:             140 60% 21%;
+    --sidebar-primary-foreground:  0   0% 100%;
+    --sidebar-accent:              128 22% 94%;
+    --sidebar-accent-foreground:   140 60% 21%;
+    --sidebar-border:              128 16% 87%;
+    --sidebar-ring:                140 60% 21%;
   }
 
   .dark {
-    --background: 120 10% 8%;
-    --foreground: 120 5% 95%;
-    --card: 120 10% 8%;
-    --card-foreground: 120 5% 95%;
-    --popover: 120 10% 8%;
-    --popover-foreground: 120 5% 95%;
-    --primary: 120 60% 98%;
-    --primary-foreground: 120 61% 34%;
-    --secondary: 120 10% 15%;
-    --secondary-foreground: 120 5% 95%;
-    --muted: 120 10% 15%;
-    --muted-foreground: 120 5% 65%;
-    --accent: 180 80% 40%;
-    --accent-foreground: 180 5% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background:          150 40%  7%;
+    --foreground:          120  8% 95%;
+    --card:                150 32% 11%;
+    --card-foreground:     120  8% 95%;
+    --popover:             150 32% 11%;
+    --popover-foreground:  120  8% 95%;
+    --primary:             140 50% 55%;
+    --primary-foreground:  150 40%  7%;
+    --secondary:           150 20% 15%;
+    --secondary-foreground: 120 8% 95%;
+    --muted:               150 20% 15%;
+    --muted-foreground:    120  8% 65%;
+    --accent:               31 84% 55%;
+    --accent-foreground:    0   0% 100%;
+    --destructive:          0  62% 30%;
     --destructive-foreground: 0 0% 98%;
-    --border: 120 10% 15%;
-    --input: 120 10% 15%;
-    --ring: 120 60% 98%;
-    --chart-1: 120 70% 50%;
-    --chart-2: 180 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 120 10% 8%;
-    --sidebar-foreground: 120 5% 95%;
-    --sidebar-primary: 120 60% 98%;
-    --sidebar-primary-foreground: 120 61% 34%;
-    --sidebar-accent: 120 10% 15%;
-    --sidebar-accent-foreground: 120 5% 95%;
-    --sidebar-border: 120 10% 15%;
-    --sidebar-ring: 120 60% 98%;
+    --border:              150 20% 18%;
+    --input:               150 20% 18%;
+    --ring:                140 50% 55%;
+    --surface-inverse:          150 40%  5%;
+    --surface-inverse-elevated: 150 32%  9%;
+    --sidebar-background:       150 40%  7%;
+    --sidebar-foreground:       120  8% 95%;
+    --sidebar-primary:          140 50% 55%;
+    --sidebar-primary-foreground: 150 40% 7%;
+    --sidebar-accent:           150 20% 15%;
+    --sidebar-accent-foreground: 120 8% 95%;
+    --sidebar-border:           150 20% 18%;
+    --sidebar-ring:             140 50% 55%;
   }
 }
 
+/* ── BASE RESETS ──────────────────────────────────────────────────────────── */
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-body antialiased;
   }
+  /* Default section vertical rhythm — can be overridden per section */
   section {
-    @apply py-16 sm:py-20;
+    @apply py-20 sm:py-28;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+}
+
+/* ── SCROLL ANIMATION SYSTEM ──────────────────────────────────────────────── */
+/* Trigger class added by AnimateOnScroll component via IntersectionObserver.
+   Wrapping elements start invisible and slide up; .in-view reveals them.
+   The entire block is inside a prefers-reduced-motion: no-preference guard
+   so users who opt out of motion see content immediately at full opacity.    */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity   var(--duration-slow) var(--ease-premium),
+      transform var(--duration-slow) var(--ease-premium);
+  }
+  .animate-on-scroll.in-view {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
