@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Dumbbell, Apple, Star } from 'lucide-react';
+import { AnimateOnScroll } from '@/components/ui/animate-on-scroll';
 
 const services = [
   {
@@ -38,7 +39,7 @@ const ServicesSection = () => {
   return (
     <section id="services" className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <AnimateOnScroll className="text-center max-w-2xl mx-auto mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-4">
             Servicios
           </p>
@@ -49,10 +50,11 @@ const ServicesSection = () => {
             Tres programas construidos sobre el Método 4R — desde el foco en entrenamiento o
             nutrición hasta el plan integral que lo abarca todo.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service) => (
+          {services.map((service, i) => (
+            <AnimateOnScroll key={service.subtitle} delay={i * 100}>
             <Card
               key={service.subtitle}
               className="flex flex-col shadow-md hover:shadow-xl border border-border rounded-2xl transition-all duration-[250ms] hover:-translate-y-1 relative overflow-visible"
@@ -87,14 +89,15 @@ const ServicesSection = () => {
                 </div>
               </CardContent>
             </Card>
+            </AnimateOnScroll>
           ))}
         </div>
 
-        <div className="text-center mt-14">
+        <AnimateOnScroll delay={200} className="text-center mt-14">
           <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-[250ms]">
             <Link href="/planes">Ver Planes y Tarifas</Link>
           </Button>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

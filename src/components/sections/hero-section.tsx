@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Timer, Layers3, ShieldCheck } from "lucide-react";
 import { Card, CardProps } from "../card";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 
 export const BenefitsSection = () => {
   const items: CardProps[] = [
@@ -33,20 +34,21 @@ export const BenefitsSection = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-          {items.map((item) => (
-            <Card
-              key={item.title}
-              title={item.title}
-              description={item.description}
-              Icon={item.Icon}
-            />
+          {items.map((item, i) => (
+            <AnimateOnScroll key={item.title} delay={i * 80}>
+              <Card
+                title={item.title}
+                description={item.description}
+                Icon={item.Icon}
+              />
+            </AnimateOnScroll>
           ))}
         </div>
-        <div className="mt-10 text-center">
+        <AnimateOnScroll delay={240} className="mt-10 text-center">
           <p className="text-lg md:text-xl max-w-[65ch] mx-auto text-muted-foreground leading-relaxed font-medium">
             No se trata sólo de entrenar más — se trata de entrenar mejor, con coherencia, con resultados fiables.
           </p>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

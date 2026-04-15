@@ -1,4 +1,5 @@
 import { ContactForm } from '@/components/contact-form';
+import { AnimateOnScroll } from '@/components/ui/animate-on-scroll';
 
 const ContactSection = () => {
   return (
@@ -6,7 +7,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
-        <div className="max-w-2xl mx-auto text-center mb-14">
+        <AnimateOnScroll className="max-w-2xl mx-auto text-center mb-14">
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent mb-4">
             Contacto
           </p>
@@ -16,14 +17,14 @@ const ContactSection = () => {
           <p className="mt-4 text-lg text-white/70 leading-relaxed">
             Hablemos de tus metas y diseñemos el primer paso con la precisión que mereces.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         {/* Form card floats over the dark section */}
-        <div className="max-w-3xl mx-auto">
+        <AnimateOnScroll delay={100} className="max-w-3xl mx-auto">
           <div className="bg-card rounded-2xl p-8 sm:p-12 shadow-xl border border-white/10">
             <ContactForm />
           </div>
-        </div>
+        </AnimateOnScroll>
 
         <div className="text-center mt-10">
           <p className="text-white/50 text-sm">

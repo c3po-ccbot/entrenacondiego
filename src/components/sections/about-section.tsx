@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 
 const AboutSection = () => {
   return (
@@ -9,7 +10,7 @@ const AboutSection = () => {
         <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
 
           {/* Image */}
-          <div className="md:col-span-2">
+          <AnimateOnScroll className="md:col-span-2">
             <Card className="overflow-hidden shadow-xl border border-border rounded-2xl">
               <CardContent className="p-0">
                 <div className="overflow-hidden rounded-2xl">
@@ -24,10 +25,10 @@ const AboutSection = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </AnimateOnScroll>
 
           {/* Content */}
-          <div className="md:col-span-3">
+          <AnimateOnScroll delay={100} className="md:col-span-3">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-4">
               Sobre Mí
             </p>
@@ -73,7 +74,7 @@ const AboutSection = () => {
                 </a>
               </Button>
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>
