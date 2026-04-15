@@ -151,9 +151,10 @@ export function ContactForm() {
         <Button
           type="submit"
           size="lg"
-          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto"
+          disabled={form.formState.isSubmitting}
+          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         >
-          Enviar Mensaje
+          {form.formState.isSubmitting ? "Enviando…" : "Enviar Mensaje"}
         </Button>
       </form>
     </Form>
