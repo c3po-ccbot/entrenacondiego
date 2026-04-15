@@ -15,8 +15,6 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const data = schema.parse(body);
-    // console.log("Datos del formulario recibidos:", data);
-    // podrías incluir control de frecuencia aquí (ver abajo)
 
     // Configurar el transporte
     const transporter = nodemailer.createTransport({
@@ -41,7 +39,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error al enviar email:", error);
     return NextResponse.json(
-      { ok: false, error: (error as Error).message },
+      { ok: false, error: "Error interno. Inténtalo más tarde." },
       { status: 500 }
     );
   }
