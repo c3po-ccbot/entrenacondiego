@@ -7,9 +7,10 @@ const Footer = () => {
     <footer className="bg-surface-inverse border-t border-white/10 text-white/60">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-center sm:text-left">
-            &copy; {new Date().getFullYear()} Diego Jimenez. Todos los derechos reservados.
-          </p>
+          <div className="text-sm text-center sm:text-left space-y-0.5">
+            <p>&copy; {new Date().getFullYear()} Diego Jiménez · entrenaconDiego</p>
+            <p className="text-white/40">Madrid · Vallecas · Online</p>
+          </div>
           <nav className="flex items-center gap-6 text-sm">
             <Link href="/#planes-y-tarifas" className="hover:text-white transition-colors duration-[150ms]">
               Planes y Tarifas
