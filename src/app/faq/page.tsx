@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -6,6 +7,19 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+
+export const metadata: Metadata = {
+  title: 'Preguntas Frecuentes',
+  description:
+    'Resolvemos tus dudas sobre entrenamiento personal, asesoría nutricional y el Programa Integral 4R en Madrid y Vallecas. Respuestas claras y directas.',
+  alternates: { canonical: '/faq' },
+  openGraph: {
+    title: 'Preguntas Frecuentes | entrenaconDiego',
+    description:
+      'Resolvemos tus dudas sobre entrenamiento personal, asesoría nutricional y el Programa Integral 4R en Madrid y Vallecas.',
+    url: '/faq',
+  },
+};
 
 const faqs = [
   {
@@ -58,9 +72,29 @@ const faqs = [
   },
 ];
 
+/** FAQPage JSON-LD — enables rich results in Google Search */
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      // Strip HTML tags for the schema (plain text only)
+      text: faq.answer.replace(/<[^>]+>/g, ''),
+    },
+  })),
+};
+
 export default function FaqPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: controlled server-side data
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Dark page header */}
       <div className="bg-surface-inverse text-white pt-20 pb-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">

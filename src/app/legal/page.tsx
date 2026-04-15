@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -6,6 +7,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+
+export const metadata: Metadata = {
+  title: 'Legal — Política de Privacidad y Términos',
+  description:
+    'Política de privacidad, términos y condiciones y aviso legal de entrenaconDiego, entrenador personal en Madrid y Vallecas.',
+  alternates: { canonical: '/legal' },
+  robots: { index: false, follow: false },
+};
 
 export default function LegalPage() {
   return (

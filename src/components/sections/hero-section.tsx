@@ -63,8 +63,7 @@ const HeroSection = () => {
       >
         <Image
           src="/images/hero.jpg"
-          alt="Hero background"
-          data-ai-hint="Fondo hero"
+          alt=""
           fill
           className="object-cover brightness-[0.55] contrast-110"
           priority

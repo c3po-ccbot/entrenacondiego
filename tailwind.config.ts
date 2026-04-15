@@ -11,10 +11,9 @@ export default {
     extend: {
       /* ── TYPOGRAPHY ──────────────────────────────────────────────────────── */
       fontFamily: {
-        // Inter: gold-standard body font — highly readable, premium feel
-        body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        // Syne: editorial, geometric sans — confident and sporty at display sizes
-        headline: ['Syne', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // CSS variables injected by next/font/google (self-hosted)
+        body: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        headline: ['var(--font-syne)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
 
