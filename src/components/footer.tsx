@@ -4,25 +4,25 @@ import { Button } from '@/components/ui/button';
 
 const Footer = () => {
   return (
-    <footer className="bg-muted text-muted-foreground">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+    <footer className="bg-surface-inverse border-t border-white/10 text-white/60">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
           <p className="text-sm text-center sm:text-left">
             &copy; {new Date().getFullYear()} Diego Jimenez. Todos los derechos reservados.
           </p>
-          <nav className="flex items-center gap-4 text-sm">
-            <Link href="/planes" className="hover:text-foreground transition-colors">
+          <nav className="flex items-center gap-6 text-sm">
+            <Link href="/planes" className="hover:text-white transition-colors duration-[150ms]">
               Planes y Tarifas
             </Link>
-            <Link href="/faq" className="hover:text-foreground transition-colors">
+            <Link href="/faq" className="hover:text-white transition-colors duration-[150ms]">
               FAQ
             </Link>
-            <Link href="/legal" className="hover:text-foreground transition-colors">
+            <Link href="/legal" className="hover:text-white transition-colors duration-[150ms]">
               Legal / Privacidad
             </Link>
           </nav>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" asChild>
+          <div className="flex items-center">
+            <Button variant="ghost" size="icon" asChild className="text-white/60 hover:text-accent hover:bg-white/10">
               <a
                 href="https://www.instagram.com/entrenacondiego/"
                 target="_blank"

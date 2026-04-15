@@ -60,45 +60,60 @@ const faqs = [
 
 export default function FaqPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-3xl">
-      <div className="text-center mb-12">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold">Preguntas Frecuentes</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Respuestas a las dudas más habituales. Si no encuentras lo que buscas, escríbeme
-          directamente.
-        </p>
+    <>
+      {/* Dark page header */}
+      <div className="bg-surface-inverse text-white pt-20 pb-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent mb-4">
+            Soporte
+          </p>
+          <h1 className="font-headline text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em]">
+            Preguntas Frecuentes
+          </h1>
+          <p className="mt-4 text-white/70 text-lg leading-relaxed">
+            Respuestas a las dudas más habituales. Si no encuentras lo que buscas, escríbeme
+            directamente.
+          </p>
+        </div>
       </div>
 
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq) => (
-          <AccordionItem key={faq.id} value={faq.id}>
-            <AccordionTrigger className="text-left text-base font-semibold">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent>
-              <p
-                className="text-muted-foreground leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: faq.answer }}
-              />
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      {/* Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-3xl">
+        <Accordion type="single" collapsible className="w-full space-y-3">
+          {faqs.map((faq) => (
+            <AccordionItem
+              key={faq.id}
+              value={faq.id}
+              className="border border-border rounded-xl px-2 shadow-sm"
+            >
+              <AccordionTrigger className="text-left text-base font-semibold py-5 hover:no-underline hover:text-primary transition-colors duration-[150ms]">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="pb-5">
+                <p
+                  className="text-muted-foreground leading-relaxed max-w-[65ch]"
+                  dangerouslySetInnerHTML={{ __html: faq.answer }}
+                />
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
 
-      <div className="text-center mt-16">
-        <p className="text-muted-foreground mb-4">
-          ¿Tienes más preguntas? Contáctame directamente.
-        </p>
-        <Button asChild size="lg">
-          <a href="/#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
-        </Button>
-      </div>
+        <div className="text-center mt-16 bg-secondary rounded-2xl p-10">
+          <p className="text-foreground font-medium mb-4">
+            ¿Tienes más preguntas? Contáctame directamente.
+          </p>
+          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5">
+            <a href="/#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
+          </Button>
+        </div>
 
-      <div className="text-center mt-8">
-        <Button asChild variant="ghost">
-          <Link href="/">← Volver al inicio</Link>
-        </Button>
+        <div className="text-center mt-8">
+          <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
+            <Link href="/">← Volver al inicio</Link>
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

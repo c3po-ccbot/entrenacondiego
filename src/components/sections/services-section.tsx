@@ -6,7 +6,7 @@ import { Dumbbell, Apple, Star } from 'lucide-react';
 
 const services = [
   {
-    icon: <Dumbbell className="h-10 w-10 text-primary" />,
+    icon: <Dumbbell className="h-8 w-8 text-primary" />,
     subtitle: 'Entrenamiento Personalizado',
     title: 'Programas de Entrenamiento Personalizados con Rigor de Ingeniero',
     description:
@@ -15,7 +15,7 @@ const services = [
     badge: null,
   },
   {
-    icon: <Apple className="h-10 w-10 text-primary" />,
+    icon: <Apple className="h-8 w-8 text-primary" />,
     subtitle: 'Asesoría Nutricional',
     title: 'Diseño de una Dieta Personalizada para una Vida de Alto Rendimiento',
     description:
@@ -24,7 +24,7 @@ const services = [
     badge: null,
   },
   {
-    icon: <Star className="h-10 w-10 text-primary" />,
+    icon: <Star className="h-8 w-8 text-accent" />,
     subtitle: 'Programa Integral 4R',
     title: 'Entrenamiento, Nutrición y Hábitos: Tu Plan Estratégico hacia Resultados Duraderos',
     description:
@@ -36,42 +36,50 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section id="services">
+    <section id="services" className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-4">
+            Servicios
+          </p>
+          <h2 className="font-headline text-3xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em]">
             Elige el Plan que se Adapta a Ti
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
             Tres programas construidos sobre el Método 4R — desde el foco en entrenamiento o
             nutrición hasta el plan integral que lo abarca todo.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-3 gap-8">
           {services.map((service) => (
-            <Card key={service.subtitle} className="flex flex-col shadow-lg relative">
+            <Card
+              key={service.subtitle}
+              className="flex flex-col shadow-md hover:shadow-xl border border-border rounded-2xl transition-all duration-[250ms] hover:-translate-y-1 relative overflow-visible"
+            >
               {service.badge && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 text-sm whitespace-nowrap">
+                <Badge className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 text-xs font-bold uppercase tracking-wide whitespace-nowrap shadow-md">
                   {service.badge}
                 </Badge>
               )}
-              <CardHeader className="items-center text-center pt-8">
-                <div className="bg-primary/10 p-4 rounded-full mb-2">{service.icon}</div>
-                <p className="text-sm font-semibold text-primary uppercase tracking-wide">
+              <CardHeader className="items-center text-center pt-10">
+                <div className="bg-primary/10 p-4 rounded-2xl mb-3 transition-colors duration-[250ms] group-hover:bg-primary/15">
+                  {service.icon}
+                </div>
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">
                   {service.subtitle}
                 </p>
-                <CardTitle className="font-headline text-xl mt-1 leading-snug">
+                <CardTitle className="font-headline text-xl font-bold mt-2 leading-snug tracking-tight">
                   {service.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex flex-col flex-grow gap-4">
-                <CardDescription className="text-base">{service.description}</CardDescription>
+              <CardContent className="flex flex-col flex-grow gap-5">
+                <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
                 <div className="flex flex-wrap gap-2 mt-auto pt-2">
                   {service.methodTags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-xs font-medium bg-primary/10 text-primary px-2 py-0.5 rounded-full"
+                      className="text-xs font-semibold bg-primary/10 text-primary px-2.5 py-1 rounded-full"
                     >
                       {tag}
                     </span>
@@ -82,8 +90,8 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Button size="lg" variant="outline" asChild>
+        <div className="text-center mt-14">
+          <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-[250ms]">
             <Link href="/planes">Ver Planes y Tarifas</Link>
           </Button>
         </div>
