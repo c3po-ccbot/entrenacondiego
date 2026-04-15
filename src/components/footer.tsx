@@ -12,7 +12,7 @@ const Footer = () => {
             <p className="text-white/40">Madrid · Vallecas · Online</p>
           </div>
           <nav className="flex items-center gap-6 text-sm">
-            <Link href="/planes" className="hover:text-white transition-colors duration-[150ms]">
+            <Link href="/#planes-y-tarifas" className="hover:text-white transition-colors duration-[150ms]">
               Planes y Tarifas
             </Link>
             <Link href="/faq" className="hover:text-white transition-colors duration-[150ms]">

@@ -40,7 +40,7 @@ export default function LegalPage() {
         {/* PRIVACY POLICY */}
         <AccordionItem value="privacidad" className="border border-border rounded-xl px-2 shadow-sm">
           <AccordionTrigger className="text-xl font-headline font-bold py-5 hover:no-underline hover:text-primary transition-colors duration-[150ms]">
-            Política de Privacidad
+            <h2 className="text-xl font-headline font-bold">Política de Privacidad</h2>
           </AccordionTrigger>
           <AccordionContent className="prose prose-sm max-w-none text-muted-foreground space-y-4">
             <div className="space-y-4">
@@ -117,7 +117,7 @@ export default function LegalPage() {
         {/* TERMS OF SERVICE */}
         <AccordionItem value="terminos" className="border border-border rounded-xl px-2 shadow-sm">
           <AccordionTrigger className="text-xl font-headline font-bold py-5 hover:no-underline hover:text-primary transition-colors duration-[150ms]">
-            Términos y Condiciones
+            <h2 className="text-xl font-headline font-bold">Términos y Condiciones</h2>
           </AccordionTrigger>
           <AccordionContent className="prose prose-sm max-w-none text-muted-foreground space-y-4">
             <div className="space-y-4">

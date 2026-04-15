@@ -1,3 +1,13 @@
+/** Escape HTML special characters to prevent injection in outbound emails. */
+function esc(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 export const mailTemplate = ({
   name,
   email,
@@ -18,26 +28,26 @@ export const mailTemplate = ({
     <table style="border-collapse: collapse; margin-top: 1rem;">
       <tr>
         <td style="padding: 4px 8px; font-weight:600;">Nombre:</td>
-        <td style="padding: 4px 8px;">${name}</td>
+        <td style="padding: 4px 8px;">${esc(name)}</td>
       </tr>
       <tr>
         <td style="padding: 4px 8px; font-weight:600;">Email:</td>
         <td style="padding: 4px 8px;">
-          <a href="mailto:${email}" style="color:#2563eb; text-decoration:none;">
-            ${email}
+          <a href="mailto:${esc(email)}" style="color:#2563eb; text-decoration:none;">
+            ${esc(email)}
           </a>
         </td>
       </tr>
       <tr>
         <td style="padding: 4px 8px; font-weight:600;">Teléfono:</td>
-        <td style="padding: 4px 8px;">${phone || "(no proporcionado)"}</td>
+        <td style="padding: 4px 8px;">${phone ? esc(phone) : "(no proporcionado)"}</td>
       </tr>
     </table>
 
     <div style="margin-top: 1.5rem;">
       <p style="font-weight:600; margin-bottom:0.25rem;">Mensaje:</p>
       <div style="padding: 0.75rem 1rem; background:#f3f4f6; border-radius: 0.5rem; white-space: pre-line;">
-        ${message}
+        ${esc(message)}
       </div>
     </div>
 

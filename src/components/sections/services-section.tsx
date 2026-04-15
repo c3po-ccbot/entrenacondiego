@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -52,50 +51,74 @@ const ServicesSection = () => {
           </p>
         </AnimateOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* items-stretch (grid default) gives all cards equal height */}
+        <div className="grid md:grid-cols-3 gap-8 items-stretch">
           {services.map((service, i) => (
-            <AnimateOnScroll key={service.subtitle} delay={i * 100}>
-            <Card
-              key={service.subtitle}
-              className="flex flex-col shadow-md hover:shadow-xl border border-border rounded-2xl transition-all duration-[250ms] hover:-translate-y-1 relative overflow-visible"
-            >
-              {service.badge && (
-                <Badge className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 text-xs font-bold uppercase tracking-wide whitespace-nowrap shadow-md">
-                  {service.badge}
-                </Badge>
-              )}
-              <CardHeader className="items-center text-center pt-10">
-                <div className="bg-primary/10 p-4 rounded-2xl mb-3 transition-colors duration-[250ms] group-hover:bg-primary/15">
-                  {service.icon}
-                </div>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">
-                  {service.subtitle}
-                </p>
-                <CardTitle className="font-headline text-xl font-bold mt-2 leading-snug tracking-tight">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-col flex-grow gap-5">
-                <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
-                <div className="flex flex-wrap gap-2 mt-auto pt-2">
-                  {service.methodTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs font-semibold bg-primary/10 text-primary px-2.5 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <AnimateOnScroll key={service.subtitle} delay={i * 100} className="h-full">
+              {/*
+                Card layout (h-full, flex-col):
+                  ┌─────────────────────────────────┐
+                  │ [CardHeader] icon · subtitle     │
+                  │              title               │
+                  ├─────────────────────────────────┤
+                  │ [CardContent flex-col flex-1]    │
+                  │   description                    │
+                  │   <flex-grow spacer>             │
+                  │   ─────────────────────────────  │ ← tags always at same y-position
+                  │   pill tags                      │
+                  └─────────────────────────────────┘
+              */}
+              <Card className="h-full flex flex-col shadow-md hover:shadow-xl border border-border rounded-2xl transition-all duration-[250ms] hover:-translate-y-1 relative overflow-visible">
+                {service.badge && (
+                  <Badge className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 text-xs font-bold uppercase tracking-wide whitespace-nowrap shadow-md">
+                    {service.badge}
+                  </Badge>
+                )}
+                <CardHeader className="items-center text-center pt-10">
+                  <div className="bg-primary/10 p-4 rounded-2xl mb-3 transition-colors duration-[250ms] group-hover:bg-primary/15">
+                    {service.icon}
+                  </div>
+                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">
+                    {service.subtitle}
+                  </p>
+                  <CardTitle className="font-headline text-xl font-bold mt-2 leading-snug tracking-tight">
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
+
+                <CardContent className="flex flex-col flex-1 gap-4">
+                  <CardDescription className="text-base leading-relaxed">
+                    {service.description}
+                  </CardDescription>
+
+                  {/* Spacer — pushes pill tags to a consistent vertical position */}
+                  <div className="flex-1" />
+
+                  {/* Pill tags row — always at the same vertical position */}
+                  <div className="flex flex-wrap gap-2 pb-1">
+                    {service.methodTags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs font-semibold bg-primary/10 text-primary px-2.5 py-1 rounded-full leading-none"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </AnimateOnScroll>
           ))}
         </div>
 
         <AnimateOnScroll delay={200} className="text-center mt-14">
-          <Button size="lg" variant="outline" asChild className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-[250ms]">
-            <Link href="/planes">Ver Planes y Tarifas</Link>
+          <Button
+            size="lg"
+            variant="outline"
+            asChild
+            className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-[250ms]"
+          >
+            <a href="#planes-y-tarifas">Ver Planes y Tarifas</a>
           </Button>
         </AnimateOnScroll>
       </div>

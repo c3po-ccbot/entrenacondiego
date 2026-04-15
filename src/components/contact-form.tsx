@@ -30,6 +30,8 @@ const formSchema = z.object({
   }).max(1500, {
     message: "El mensaje no puede exceder los 1500 caracteres.",
   }),
+  // Honeypot field — must remain empty. Real users never see it.
+  website: z.string().optional(),
 });
 
 export function ContactForm() {
@@ -42,6 +44,7 @@ export function ContactForm() {
       email: "",
       phone: "",
       message: "",
+      website: "",
     },
   });
 
@@ -76,6 +79,17 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {/* Honeypot — hidden from real users via CSS, not display:none (bots ignore that) */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+          <label htmlFor="website">No rellenar</label>
+          <input
+            id="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...form.register("website")}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FormField
             control={form.control}
@@ -137,9 +151,10 @@ export function ContactForm() {
         <Button
           type="submit"
           size="lg"
-          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto"
+          disabled={form.formState.isSubmitting}
+          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
         >
-          Enviar Mensaje
+          {form.formState.isSubmitting ? "Enviando…" : "Enviar Mensaje"}
         </Button>
       </form>
     </Form>

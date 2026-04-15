@@ -26,7 +26,7 @@ const faqs = [
     id: 'q1',
     question: '¿Qué incluye cada servicio?',
     answer:
-      'Cada servicio está diseñado para cubrir una necesidad específica. El plan de Entrenamiento Personalizado incluye programación detallada, control de cargas y ajustes semanales. La Asesoría Nutricional incluye un menú personalizado, recomendaciones según tus objetivos e integración con tu entrenamiento. El Programa Integral 4R lo combina todo: entrenamiento, nutrición y hábitos saludables, con soporte ampliado y videollamadas mensuales. Puedes consultar el detalle completo en la página de <a href="/planes" class="text-primary underline">Planes y Tarifas</a>.',
+      'Cada servicio está diseñado para cubrir una necesidad específica. El plan de Entrenamiento Personalizado incluye programación detallada, control de cargas y ajustes semanales. La Asesoría Nutricional incluye un menú personalizado, recomendaciones según tus objetivos e integración con tu entrenamiento. El Programa Integral 4R lo combina todo: entrenamiento, nutrición y hábitos saludables, con soporte ampliado y videollamadas mensuales. Puedes consultar el detalle completo en la página de <a href="/#planes-y-tarifas" class="text-primary underline">Planes y Tarifas</a>.',
   },
   {
     id: 'q2',

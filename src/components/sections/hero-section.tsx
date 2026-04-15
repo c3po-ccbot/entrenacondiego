@@ -57,43 +57,89 @@ export const BenefitsSection = () => {
 const HeroSection = () => {
   return (
     <>
+      {/*
+        Hero: split layout
+        - Desktop: text on left · hero image fills right half
+        - Mobile: full-width with image as dark background behind text
+        All copy is unchanged; only layout, spacing, and visual treatment updated.
+      */}
       <section
         id="home"
-        className="relative h-[80vh] min-h-[520px] flex items-center justify-center text-white overflow-hidden py-0"
+        className="relative overflow-hidden bg-[hsl(var(--surface-inverse))] text-white"
       >
-        <Image
-          src="/images/hero.jpg"
-          alt=""
-          fill
-          className="object-cover brightness-[0.55] contrast-110"
-          priority
+        {/* Brand gradient accent (decorative) */}
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-primary/30 via-primary/5 to-transparent pointer-events-none"
+          aria-hidden="true"
         />
-        {/* Layered gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80 z-10" />
 
-        <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.20em] text-accent mb-6">
-            Entrenador Personal · Dietista · Asesor de Hábitos
-          </p>
-          <h1 className="font-headline text-5xl md:text-7xl font-extrabold leading-[1.05] tracking-[-0.03em] uppercase">
-            La <span className="text-accent">PRECISIÓN</span> de la
-            ingeniería aplicada a tu entrenamiento
-          </h1>
-          <p className="mt-6 text-lg md:text-xl max-w-[60ch] mx-auto text-white/80 leading-relaxed">
-            Deja de improvisar. Transforma tu cuerpo y mente con hábitos sólidos
-            y sencillos.
-          </p>
-          <div className="mt-10">
-            <Button
-              size="lg"
-              asChild
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl text-base px-8 py-6 transition-all duration-[250ms] hover:shadow-2xl hover:-translate-y-0.5"
-            >
-              <a href="#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
-            </Button>
+        {/* Mobile: blurred image fills section behind text */}
+        <div className="absolute inset-0 lg:hidden" aria-hidden="true">
+          <Image
+            src="/images/hero.jpg"
+            alt=""
+            fill
+            className="object-cover brightness-[0.30]"
+            priority
+          />
+        </div>
+
+        {/* Desktop: image panel — right half, absolute so it fills full section height */}
+        <div
+          className="absolute top-0 right-0 bottom-0 w-1/2 hidden lg:block"
+          aria-hidden="true"
+        >
+          <Image
+            src="/images/hero.jpg"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* Left-edge blend: image fades into the dark background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--surface-inverse))] to-transparent" />
+          {/* Bottom-edge blend: softens transition toward BenefitsSection */}
+          <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[hsl(var(--surface-inverse))] to-transparent" />
+        </div>
+
+        {/* Content — sits above all background layers */}
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center min-h-[90vh] pb-28">
+            {/* Text column: full width on mobile, left half on desktop */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center pt-28 lg:pt-32 lg:pr-12">
+
+              <AnimateOnScroll>
+                <p className="text-xs font-bold uppercase tracking-[0.20em] text-accent mb-6">
+                  Entrenador Personal · Dietista · Asesor de Hábitos
+                </p>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll delay={80}>
+                <h1 className="font-headline text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.0] tracking-[-0.03em] uppercase mb-8">
+                  La <span className="text-accent">PRECISIÓN</span> de la{" "}
+                  ingeniería aplicada a tu entrenamiento
+                </h1>
+              </AnimateOnScroll>
+
+              <AnimateOnScroll delay={160}>
+                <p className="text-lg md:text-xl text-white/70 leading-relaxed mb-10 max-w-[50ch]">
+                  Deja de improvisar. Transforma tu cuerpo y mente con hábitos sólidos
+                  y sencillos.
+                </p>
+                <Button
+                  size="lg"
+                  asChild
+                  className="w-fit bg-accent hover:bg-accent/90 text-accent-foreground shadow-xl text-base px-8 py-6 transition-all duration-[250ms] hover:shadow-2xl hover:-translate-y-0.5"
+                >
+                  <a href="#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
+                </Button>
+              </AnimateOnScroll>
+
+            </div>
           </div>
         </div>
       </section>
+
       <BenefitsSection />
     </>
   );
