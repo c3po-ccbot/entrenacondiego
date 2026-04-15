@@ -1,49 +1,66 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Mountain, Repeat, TrendingUp } from 'lucide-react';
 
 const methodology = [
   {
-    icon: <Target className="h-8 w-8 text-primary" />,
-    title: 'Rigor (La Ingeniería)',
-    description: 'Análisis detallado de tu punto de partida. Definición de objetivos SMART y planificación milimétrica.',
+    icon: <Target className="h-6 w-6 text-primary" />,
+    letter: 'R1',
+    title: 'Rigor',
+    subtitle: 'La Ingeniería',
+    description: 'Análisis detallado de tu punto de partida. Objetivos SMART y planificación milimétrica.',
   },
   {
-    icon: <Mountain className="h-8 w-8 text-primary" />,
-    title: 'Resistencia (Los 20 Años)',
-    description: 'Programas diseñados para construir una base física y mental a prueba de fallos. Entrenamiento funcional y de fuerza basado en la longevidad.',
+    icon: <Mountain className="h-6 w-6 text-primary" />,
+    letter: 'R2',
+    title: 'Resistencia',
+    subtitle: 'Los 20 Años',
+    description: 'Entrenamiento funcional y de fuerza orientado a la longevidad. Base física a prueba de fallos.',
   },
   {
-    icon: <Repeat className="h-8 w-8 text-primary" />,
-    title: 'Rutina (Los Hábitos)',
-    description: 'Implementación de microrrutinas que transforman tu día a día, haciendo que el bienestar sea automático, no una lucha.',
+    icon: <Repeat className="h-6 w-6 text-primary" />,
+    letter: 'R3',
+    title: 'Rutina',
+    subtitle: 'Los Hábitos',
+    description: 'Microrrutinas que hacen que el bienestar sea automático, no una lucha diaria.',
   },
   {
-    icon: <TrendingUp className="h-8 w-8 text-primary" />,
-    title: 'Resultados (Tu Éxito)',
-    description: 'Seguimiento constante y ajustes en tiempo real. Métricas claras para que siempre sepas cuánto has avanzado.',
+    icon: <TrendingUp className="h-6 w-6 text-primary" />,
+    letter: 'R4',
+    title: 'Resultados',
+    subtitle: 'Tu Éxito',
+    description: 'Seguimiento constante y ajustes en tiempo real. Métricas claras de progreso.',
   },
 ];
 
 const MethodologySection = () => {
   return (
-    <section id="methodology">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="font-headline text-3xl md:text-4xl font-bold">Mi Método 4R: Rigor, Resistencia, Rutina y Resultados</h2>
+    <section id="methodology" className="bg-muted/40">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold">El Método 4R</h2>
+          <p className="mt-3 text-muted-foreground">
+            La metodología detrás de todos los planes. El{' '}
+            <span className="font-semibold text-foreground">Programa Integral 4R</span> entrega los
+            cuatro pilares completos; los planes de Entrenamiento y Nutrición aplican los pilares
+            más relevantes para cada objetivo.
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {methodology.map((item) => (
-            <Card key={item.title} className="text-center shadow-md hover:shadow-xl transition-shadow">
-              <CardHeader className="items-center">
-                <div className="bg-primary/10 p-4 rounded-full">
-                  {item.icon}
-                </div>
-                <CardTitle className="font-headline pt-4">{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{item.description}</p>
-              </CardContent>
-            </Card>
+            <div
+              key={item.title}
+              className="flex flex-col items-center text-center bg-background rounded-xl p-5 shadow-sm"
+            >
+              <div className="flex items-center justify-center bg-primary/10 rounded-full p-3 mb-3">
+                {item.icon}
+              </div>
+              <span className="text-xs font-bold text-primary/60 uppercase tracking-widest mb-0.5">
+                {item.letter}
+              </span>
+              <p className="font-headline font-bold text-base">{item.title}</p>
+              <p className="text-xs text-primary font-medium mb-2">{item.subtitle}</p>
+              <p className="text-sm text-muted-foreground leading-snug">{item.description}</p>
+            </div>
           ))}
         </div>
       </div>
