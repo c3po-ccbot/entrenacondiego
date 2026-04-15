@@ -9,11 +9,16 @@ export default {
   ],
   theme: {
     extend: {
+      /* ── TYPOGRAPHY ──────────────────────────────────────────────────────── */
       fontFamily: {
-        body: ['"PT Sans"', 'sans-serif'],
-        headline: ['Rajdhani', '"Playfair Display"', 'serif'],
+        // Inter: gold-standard body font — highly readable, premium feel
+        body: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        // Syne: editorial, geometric sans — confident and sporty at display sizes
+        headline: ['Syne', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
+
+      /* ── COLORS ──────────────────────────────────────────────────────────── */
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
@@ -46,8 +51,13 @@ export default {
           foreground: 'hsl(var(--destructive-foreground))',
         },
         border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        input:  'hsl(var(--input))',
+        ring:   'hsl(var(--ring))',
+        // Dark surfaces: hero, contact section, footer
+        surface: {
+          inverse:          'hsl(var(--surface-inverse))',
+          'inverse-elevated': 'hsl(var(--surface-inverse-elevated))',
+        },
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',
@@ -66,32 +76,69 @@ export default {
           ring: 'hsl(var(--sidebar-ring))',
         },
       },
+
+      /* ── BORDER RADII ────────────────────────────────────────────────────── */
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        // shadcn/ui scale (--radius = 0.75rem = 12px)
+        lg:   'var(--radius)',
+        md:   'calc(var(--radius) - 2px)',
+        sm:   'calc(var(--radius) - 4px)',
+        // Extended scale
+        xl:   'var(--radius-xl)',
+        '2xl': 'var(--radius-2xl)',
+        full: 'var(--radius-full)',
       },
+
+      /* ── LAYERED SHADOWS ─────────────────────────────────────────────────── */
+      boxShadow: {
+        sm:  'var(--shadow-sm)',
+        md:  'var(--shadow-md)',
+        lg:  'var(--shadow-lg)',
+        xl:  'var(--shadow-xl)',
+        DEFAULT: 'var(--shadow-md)',
+      },
+
+      /* ── MOTION ──────────────────────────────────────────────────────────── */
+      transitionTimingFunction: {
+        premium:  'var(--ease-premium)',
+        'ease-out': 'var(--ease-out)',
+      },
+      transitionDuration: {
+        fast: '150ms',
+        base: '250ms',
+        slow: '400ms',
+      },
+
+      /* ── LETTER SPACING ──────────────────────────────────────────────────── */
+      letterSpacing: {
+        display: '-0.03em',
+        headline: '-0.02em',
+        wide: '0.06em',
+        wider: '0.10em',
+        widest: '0.16em',
+      },
+
+      /* ── LINE HEIGHTS ────────────────────────────────────────────────────── */
+      lineHeight: {
+        display: '1.05',
+        heading: '1.15',
+        body: '1.65',
+      },
+
+      /* ── KEYFRAMES ───────────────────────────────────────────────────────── */
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to:   { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to:   { height: '0' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        'accordion-up':   'accordion-up   0.2s ease-out',
       },
     },
   },

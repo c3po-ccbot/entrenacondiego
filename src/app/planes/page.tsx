@@ -20,6 +20,7 @@ type Service = {
   description: string;
   badge?: string;
   features: FeatureGroup[];
+  highlight?: boolean;
 };
 
 const services: Service[] = [
@@ -59,12 +60,13 @@ const services: Service[] = [
   },
   {
     id: 'integral',
-    icon: <Star className="h-8 w-8 text-primary" />,
+    icon: <Star className="h-8 w-8 text-accent" />,
     title: 'Entrenamiento, Nutrición y Hábitos: Tu Plan Estratégico hacia Resultados Duraderos',
     subtitle: 'Programa Integral 4R',
     description:
       'No se trata de hacer más, sino de hacerlo mejor. El Programa 4R combina entrenamiento, nutrición y hábitos en un único plan estratégico diseñado para que obtengas resultados duraderos y construyas una vida de alto rendimiento.',
     badge: 'Todo incluido',
+    highlight: true,
     features: [
       { category: 'Entrenamiento', items: [
         'Planificación del entrenamiento detallada 100% a medida',
@@ -95,10 +97,10 @@ const services: Service[] = [
 
 function FeatureListExpanded({ groups }: { groups: FeatureGroup[] }) {
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-3">
       {groups.map((group) => (
         <div key={group.category}>
-          <p className="text-sm font-semibold mb-2">{group.category}</p>
+          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground mb-2">{group.category}</p>
           <ul className="space-y-2">
             {group.items.map((item) => (
               <li key={item} className="flex items-start gap-2 text-sm">
@@ -139,74 +141,100 @@ function FeatureListAccordion({ groups }: { groups: FeatureGroup[] }) {
 
 export default function PlanesPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div className="text-center max-w-3xl mx-auto mb-16">
-        <h1 id="planes-y-tarifas" className="font-headline text-4xl md:text-5xl font-bold">Planes y Tarifas</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Elige el programa que mejor se adapta a tus objetivos. Todos los planes incluyen
-          seguimiento personalizado y atención directa.
-        </p>
+    <>
+      {/* Dark page header */}
+      <div className="bg-surface-inverse text-white pt-20 pb-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent mb-4">
+            Inversión en ti
+          </p>
+          <h1
+            id="planes-y-tarifas"
+            className="font-headline text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em]"
+          >
+            Planes y Tarifas
+          </h1>
+          <p className="mt-4 text-white/70 text-lg max-w-xl mx-auto leading-relaxed">
+            Elige el programa que mejor se adapta a tus objetivos. Todos los planes incluyen
+            seguimiento personalizado y atención directa.
+          </p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
-        {services.map((service) => {
-          const useAccordion = service.features.length > 1;
-          return (
-            <Card key={service.id} className="flex flex-col shadow-lg relative">
-              {service.badge && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 text-sm">
-                  {service.badge}
-                </Badge>
-              )}
-              <CardHeader className="items-center text-center pt-8">
-                <div className="bg-primary/10 p-4 rounded-full mb-2">{service.icon}</div>
-                <p className="text-sm font-semibold text-primary uppercase tracking-wide">
-                  {service.subtitle}
-                </p>
-                <CardTitle className="font-headline text-xl mt-1 leading-snug">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
+      {/* Cards — pulled up slightly to overlap the dark header */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-10 pb-20">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {services.map((service) => {
+            const useAccordion = service.features.length > 1;
+            return (
+              <Card
+                key={service.id}
+                className={`flex flex-col shadow-lg hover:shadow-xl rounded-2xl border transition-all duration-[250ms] hover:-translate-y-1 relative overflow-visible ${
+                  service.highlight
+                    ? 'border-accent ring-2 ring-accent/20'
+                    : 'border-border'
+                }`}
+              >
+                {service.badge && (
+                  <Badge className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 text-xs font-bold uppercase tracking-wide whitespace-nowrap shadow-md">
+                    {service.badge}
+                  </Badge>
+                )}
+                <CardHeader className="items-center text-center pt-10">
+                  <div className="bg-primary/10 p-4 rounded-2xl mb-3">{service.icon}</div>
+                  <p className="text-xs font-bold uppercase tracking-[0.12em] text-primary">
+                    {service.subtitle}
+                  </p>
+                  <CardTitle className="font-headline text-xl font-bold mt-2 leading-snug tracking-tight">
+                    {service.title}
+                  </CardTitle>
+                </CardHeader>
 
-              <CardContent className="flex flex-col flex-grow gap-6">
-                <CardDescription className="text-base">{service.description}</CardDescription>
+                <CardContent className="flex flex-col flex-grow gap-5">
+                  <CardDescription className="text-base leading-relaxed">{service.description}</CardDescription>
 
-                <div className="text-center">
-                  <Button asChild variant="outline" className="w-full">
-                    <a href="/#contact">Consultar precio</a>
-                  </Button>
-                </div>
+                  <div className="text-center">
+                    <Button asChild variant="outline" className="w-full border-2 border-primary/30 hover:border-primary hover:bg-primary/5 transition-all duration-[250ms]">
+                      <a href="/#contact">Consultar precio</a>
+                    </Button>
+                  </div>
 
-                {useAccordion
-                  ? <FeatureListAccordion groups={service.features} />
-                  : <FeatureListExpanded groups={service.features} />
-                }
+                  {useAccordion
+                    ? <FeatureListAccordion groups={service.features} />
+                    : <FeatureListExpanded groups={service.features} />
+                  }
 
-                <div className="mt-auto pt-4">
-                  <Button asChild className="w-full" size="lg">
-                    <a href="/#contact">Solicitar información</a>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+                  <div className="mt-auto pt-2">
+                    <Button
+                      asChild
+                      className={`w-full ${service.highlight ? 'bg-accent hover:bg-accent/90 text-accent-foreground' : ''}`}
+                      size="lg"
+                    >
+                      <a href="/#contact">Solicitar información</a>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16 bg-secondary rounded-2xl p-10">
+          <p className="text-foreground font-medium mb-4 text-lg">
+            ¿No sabes qué plan elegir? Agenda una sesión de diagnóstico gratuita.
+          </p>
+          <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5">
+            <a href="/#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
+          </Button>
+        </div>
+
+        <div className="text-center mt-8">
+          <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
+            <Link href="/">← Volver al inicio</Link>
+          </Button>
+        </div>
       </div>
-
-      <div className="text-center mt-16">
-        <p className="text-muted-foreground mb-4">
-          ¿No sabes qué plan elegir? Agenda una sesión de diagnóstico gratuita.
-        </p>
-        <Button asChild variant="outline" size="lg">
-          <a href="/#contact">Agenda tu Sesión de Diagnóstico GRATUITA</a>
-        </Button>
-      </div>
-
-      <div className="text-center mt-8">
-        <Button asChild variant="ghost">
-          <Link href="/">← Volver al inicio</Link>
-        </Button>
-      </div>
-    </div>
+    </>
   );
 }

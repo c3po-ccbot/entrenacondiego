@@ -9,19 +9,28 @@ import {
 
 export default function LegalPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-3xl">
-      <div className="text-center mb-12">
-        <h1 className="font-headline text-4xl md:text-5xl font-bold">Legal</h1>
-        <p className="mt-4 text-lg text-muted-foreground">
-          Política de Privacidad y Términos y Condiciones
-        </p>
+    <>
+      {/* Dark page header */}
+      <div className="bg-surface-inverse text-white pt-20 pb-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-2xl">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent mb-4">
+            Documentos
+          </p>
+          <h1 className="font-headline text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.02em]">
+            Legal
+          </h1>
+          <p className="mt-4 text-white/70 text-lg leading-relaxed">
+            Política de Privacidad y Términos y Condiciones
+          </p>
+        </div>
       </div>
 
-      <Accordion type="multiple" className="w-full space-y-2">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-3xl">
+      <Accordion type="multiple" className="w-full space-y-3">
 
         {/* PRIVACY POLICY */}
-        <AccordionItem value="privacidad">
-          <AccordionTrigger className="text-xl font-headline font-bold">
+        <AccordionItem value="privacidad" className="border border-border rounded-xl px-2 shadow-sm">
+          <AccordionTrigger className="text-xl font-headline font-bold py-5 hover:no-underline hover:text-primary transition-colors duration-[150ms]">
             Política de Privacidad
           </AccordionTrigger>
           <AccordionContent className="prose prose-sm max-w-none text-muted-foreground space-y-4">
@@ -97,8 +106,8 @@ export default function LegalPage() {
         </AccordionItem>
 
         {/* TERMS OF SERVICE */}
-        <AccordionItem value="terminos">
-          <AccordionTrigger className="text-xl font-headline font-bold">
+        <AccordionItem value="terminos" className="border border-border rounded-xl px-2 shadow-sm">
+          <AccordionTrigger className="text-xl font-headline font-bold py-5 hover:no-underline hover:text-primary transition-colors duration-[150ms]">
             Términos y Condiciones
           </AccordionTrigger>
           <AccordionContent className="prose prose-sm max-w-none text-muted-foreground space-y-4">
@@ -170,10 +179,11 @@ export default function LegalPage() {
       </p>
 
       <div className="text-center mt-8">
-        <Button asChild variant="ghost">
+        <Button asChild variant="ghost" className="text-muted-foreground hover:text-foreground">
           <Link href="/">← Volver al inicio</Link>
         </Button>
       </div>
     </div>
+    </>
   );
 }

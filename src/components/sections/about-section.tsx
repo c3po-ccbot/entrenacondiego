@@ -1,34 +1,42 @@
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { AnimateOnScroll } from "@/components/ui/animate-on-scroll";
 
 const AboutSection = () => {
   return (
     <section id="about" className="bg-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-5 gap-12 items-center">
-          <div className="md:col-span-2">
-            <Card className="overflow-hidden shadow-lg border-2 border-accent rounded-lg">
+        <div className="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
+
+          {/* Image */}
+          <AnimateOnScroll className="md:col-span-2">
+            <Card className="overflow-hidden shadow-xl border border-border rounded-2xl">
               <CardContent className="p-0">
-                <div className="overflow-hidden rounded-lg">
+                <div className="overflow-hidden rounded-2xl">
                   <Image
                     src="/images/avatar.jpg"
                     alt="Diego Jimenez"
                     data-ai-hint="Retrato de Diego Jimenez"
                     width={600}
                     height={800}
-                    className="object-cover w-full h-full transform transition-transform duration-700 ease-out hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-[700ms] ease-out hover:scale-[1.03]"
                   />
                 </div>
               </CardContent>
             </Card>
-          </div>
-          <div className="md:col-span-3">
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6">
+          </AnimateOnScroll>
+
+          {/* Content */}
+          <AnimateOnScroll delay={100} className="md:col-span-3">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-primary mb-4">
+              Sobre Mí
+            </p>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold leading-[1.15] tracking-[-0.02em] mb-6">
               Diego Jiménez: 20 años convirtiendo la pasión en hábitos y
               Resultados
             </h2>
-            <div className="space-y-4 text-muted-foreground">
+            <div className="space-y-4 text-muted-foreground leading-relaxed max-w-[65ch]">
               <p>
                 Mi nombre es Diego Jiménez. Aunque mi carrera profesional
                 comenzó en la Ingeniería Agrónoma (donde desarrollé mi rigor y
@@ -59,14 +67,14 @@ const AboutSection = () => {
               <Button
                 size="lg"
                 asChild
-                className="bg-accent hover:bg-accent/80 text-accent-foreground"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5"
               >
                 <a href="#contact">
                   ¿Listo para empezar? Descubre cómo podemos trabajar juntos
                 </a>
               </Button>
             </div>
-          </div>
+          </AnimateOnScroll>
         </div>
       </div>
     </section>

@@ -134,7 +134,11 @@ export function ContactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit" size="lg">
+        <Button
+          type="submit"
+          size="lg"
+          className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-0.5 w-full sm:w-auto"
+        >
           Enviar Mensaje
         </Button>
       </form>

@@ -16,56 +16,89 @@ const navLinks = [
 
 const Header = () => {
   const [isSheetOpen, setSheetOpen] = useState(false);
-
   const closeSheet = () => setSheetOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-20 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-bold" aria-label="entrenaconDiego Home">
-          <Mountain className="h-6 w-6 text-primary" />
-          <span className="hidden sm:inline-block font-headline text-lg">entrenaconDiego</span>
+
+        {/* Logo */}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 font-headline font-bold text-foreground group"
+          aria-label="entrenaconDiego — inicio"
+        >
+          <div className="flex items-center justify-center bg-primary rounded-lg p-1.5 transition-transform duration-[150ms] group-hover:scale-105">
+            <Mountain className="h-5 w-5 text-primary-foreground" />
+          </div>
+          <span className="hidden sm:inline-block text-lg tracking-tight">
+            entrenaconDiego
+          </span>
         </Link>
-        <nav className="hidden md:flex gap-6">
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="relative px-3 py-2 text-sm font-medium text-muted-foreground transition-colors duration-[150ms] hover:text-foreground
+                         after:absolute after:bottom-0.5 after:left-3 after:right-3 after:h-[2px] after:rounded-full after:bg-primary
+                         after:scale-x-0 after:transition-transform after:duration-[250ms]
+                         hover:after:scale-x-100"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
-           <Button asChild className="hidden md:flex" variant="outline">
-            <a href="#contact">
-              Agenda tu Sesión
-            </a>
+
+        {/* Desktop CTA + mobile menu */}
+        <div className="flex items-center gap-3">
+          <Button
+            asChild
+            className="hidden md:flex bg-accent text-accent-foreground hover:bg-accent/90 shadow-md transition-all duration-[250ms] hover:shadow-lg hover:-translate-y-px"
+          >
+            <a href="#contact">Agenda tu Sesión</a>
           </Button>
+
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="md:hidden">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle navigation menu</span>
+                <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="grid gap-6 text-lg font-medium mt-8">
-                <Link href="/" className="flex items-center gap-2 text-lg font-semibold mb-4" onClick={closeSheet}>
-                  <Mountain className="h-6 w-6 text-primary" />
-                  <span className="font-headline">entrenaconDiego</span>
+            <SheetContent side="right" className="bg-card">
+              <nav className="grid gap-1 mt-10">
+                <Link
+                  href="/"
+                  className="flex items-center gap-2.5 font-headline font-bold text-foreground mb-6 px-2"
+                  onClick={closeSheet}
+                >
+                  <div className="flex items-center justify-center bg-primary rounded-lg p-1.5">
+                    <Mountain className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  entrenaconDiego
                 </Link>
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-muted-foreground hover:text-foreground"
+                    className="rounded-md px-3 py-2.5 text-base font-medium text-muted-foreground transition-colors duration-[150ms] hover:bg-secondary hover:text-foreground"
                     onClick={closeSheet}
                   >
                     {link.label}
                   </Link>
                 ))}
+                <div className="mt-6 px-2">
+                  <Button
+                    asChild
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                    onClick={closeSheet}
+                  >
+                    <a href="#contact">Agenda tu Sesión</a>
+                  </Button>
+                </div>
               </nav>
             </SheetContent>
           </Sheet>
