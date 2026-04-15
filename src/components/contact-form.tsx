@@ -30,6 +30,8 @@ const formSchema = z.object({
   }).max(1500, {
     message: "El mensaje no puede exceder los 1500 caracteres.",
   }),
+  // Honeypot field — must remain empty. Real users never see it.
+  website: z.string().optional(),
 });
 
 export function ContactForm() {
@@ -42,6 +44,7 @@ export function ContactForm() {
       email: "",
       phone: "",
       message: "",
+      website: "",
     },
   });
 
@@ -76,6 +79,17 @@ export function ContactForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {/* Honeypot — hidden from real users via CSS, not display:none (bots ignore that) */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+          <label htmlFor="website">No rellenar</label>
+          <input
+            id="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            {...form.register("website")}
+          />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <FormField
             control={form.control}

@@ -38,7 +38,10 @@ yarn-error.log*
 next-env.d.ts
 
 .genkit/*
-.env*
+.env
+.env.local
+.env.*.local
+# .env.example is intentionally tracked so contributors know which vars are required
 
 # firebase
 firebase-debug.log
