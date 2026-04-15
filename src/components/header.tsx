@@ -10,6 +10,7 @@ const navLinks = [
   { href: "#about", label: "Sobre Mí" },
   { href: "#services", label: "Servicios" },
   { href: "#methodology", label: "Método" },
+  { href: "/planes#planes-y-tarifas", label: "Planes y Tarifas" },
   { href: "#contact", label: "Contacto" },
 ];
 
