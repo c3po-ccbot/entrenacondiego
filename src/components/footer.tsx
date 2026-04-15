@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Instagram, Linkedin } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Footer = () => {
@@ -23,13 +23,13 @@ const Footer = () => {
           </nav>
           <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" asChild>
-              <a href="#" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/entrenacondiego/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <Instagram className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button variant="ghost" size="icon" asChild>
-              <a href="#" aria-label="LinkedIn">
-                <Linkedin className="h-5 w-5" />
               </a>
             </Button>
           </div>
